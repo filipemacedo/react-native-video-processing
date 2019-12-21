@@ -752,7 +752,7 @@ public class Trimmer {
 
     // NOTE: DO THE REVERSAL (credit: https://stackoverflow.com/a/42257863/6894670)
     cmd.add("-filter_complex");
-    cmd.add("[0:v]reverse,fifo[r];[0:v][r] concat=n=2:v=1 [v]");
+    cmd.add("[0:v]reverse,fifo[r];[0:v][r] concat,loop=2:250,setpts=0.25 * PTS [v]");
 
     cmd.add("-map");
     cmd.add("[v]");
