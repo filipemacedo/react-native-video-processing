@@ -752,7 +752,8 @@ public class Trimmer {
 
     // NOTE: DO THE REVERSAL (credit: https://stackoverflow.com/a/42257863/6894670)
     cmd.add("-filter_complex");
-    cmd.add("[0:v]reverse,fifo[r];[0:v][r] concat,loop=3:250,setpts=0.25 * PTS [v]");
+    // cmd.add("[0]reverse[r];[0][r]concat,loop=2:250,setpts=0.25 * PTS");
+    cmd.add("[0:v]reverse,fifo[r];[0:v][r] concat,loop=4:250,setpts=0.33*PTS[v]");
 
     cmd.add("-map");
     cmd.add("[v]");
@@ -765,6 +766,18 @@ public class Trimmer {
     // NOTE: FLAG TO CONVER "AAC" AUDIO CODEC
     cmd.add("-strict");
     cmd.add("-2");
+
+    // cmd.add("-map");
+    // cmd.add("[v]");
+
+    // cmd.add("-preset");
+    // cmd.add("ultrafast");
+    // // NOTE: DO NOT CONVERT AUDIO TO SAVE TIME
+    // cmd.add("-c:a");
+    // cmd.add("copy");
+    // // NOTE: FLAG TO CONVER "AAC" AUDIO CODEC
+    // cmd.add("-strict");
+    // cmd.add("-2");
     // NOTE: OUTPUT FILE
     cmd.add(tempFile.getPath());
 
